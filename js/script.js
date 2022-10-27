@@ -14,8 +14,19 @@ $(function () {
     //show active slide
     $('.active').show();
 
+    //next handler
+    $('#next').on('click', nextSlide);
 
-    $('#next').on('click', function () {
+    //previous slide handler
+    $('#prev').on('click', prevSlide);
+
+    //auto slider handler
+    if (autoswitch) {
+        setInterval(nextSlide, autoswitch_speed);
+    }
+
+    //swtich to next slide
+    function nextSlide() {
         $('.active').removeClass('active').addClass('oldActive');
 
         if ($('.oldActive').is(':last-child')) {
@@ -27,9 +38,10 @@ $(function () {
         $('.oldActive').removeClass('oldActive');
         $('.slide').fadeOut(speed);
         $('.active').fadeIn(speed);
-    });
+    }
 
-    $('#prev').on('click', function () {
+    //switch to previous slide
+    function prevSlide() {
         $('.active').removeClass('active').addClass('oldActive');
 
         if ($('.oldActive').is(':first-child')) {
@@ -41,8 +53,6 @@ $(function () {
         $('.oldActive').removeClass('oldActive');
         $('.slide').fadeOut(speed);
         $('.active').fadeIn(speed);
-    });
-
-    
+    }
 });
 
